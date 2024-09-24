@@ -5,7 +5,7 @@ const path = require('path');
 // 常见图片格式
 const imageExtensions = new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'tiff', 'svg']);
 //图片文件夹路径
-const inputDir = 'H:/商品资料/ppt1032-国庆假期出游安全';
+let inputDir = '';
 //输出比例
 const outputArr = [
     {
@@ -19,6 +19,37 @@ const outputArr = [
         dir: '',
     },
 ];
+// 指定要查找的目录
+const directoryPath = 'E:/商品资料';
+
+// 函数获取最新创建的子文件夹路径
+function getLatestFolder(directory) {
+    let latestTime = 0;
+
+    // 读取指定目录
+    fs.readdirSync(directory, { withFileTypes: true }).forEach((file) => {
+        if (file.isDirectory()) {
+            const folderPath = path.join(directory, file.name);
+            const stats = fs.statSync(folderPath);
+            const creationTime = stats.birthtimeMs; // 获取创建时间
+
+            // 找到最新创建的文件夹
+            if (creationTime > latestTime) {
+                latestTime = creationTime;
+                inputDir = folderPath;
+            }
+        }
+    });
+
+    if (inputDir) {
+        console.log('最新创建的文件夹路径:', inputDir);
+    } else {
+        console.log('没有找到子文件夹。');
+    }
+}
+
+// 调用函数
+getLatestFolder(directoryPath);
 
 //创建输出文件夹
 outputArr.forEach((item) => {
