@@ -1,11 +1,11 @@
-const { exec } = require('child_process');
+const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { getInputDir } = require('../utils/index');
 const { ppt } = require('../config/index');
 
 //工作目录文件夹路径
-const inputDir = getInputDir(); // 输入PPT文件路径
+const inputDir = getInputDir();
 
 if (!inputDir) {
     console.log('未执行ppt转图片功能，工作目录不存在');
@@ -25,47 +25,41 @@ if (!fs.existsSync(imgDir)) {
     fs.mkdirSync(imgDir);
 }
 
-const convertPptToImages = (inputDir, outputDir) => {
-    // 使用 LibreOffice 将 PPT 转换为 PDF
-    // const pdfFilePath = path.join(outputDir, '9.pdf');
-    // console.log(pdfFilePath);
-    const convertCommand = `soffice --headless --invisible --convert-to pdf --outdir "${outputDir}" "${inputDir}"`;
+// 使用 LibreOffice 将 PPT 转换为 PDF
+const convertPptToPdf = (inputDir) => {
+    const pdfCmd = `soffice --headless --invisible --convert-to pdf --outdir "${pdfDir}" "${inputDir}" 2>NUL`;
+    console.log(pdfCmd);
 
-    return new Promise((resolve, reject) => {
-        exec(convertCommand, (error) => {
-            if (error) {
-                reject(error);
-            } else {
-                resolve();
-            }
-
-            // // 使用 ImageMagick 将 PDF 转换为图片
-            // const imageOutputPath = path.join(outputDir, 'slide_%d.png');
-            // const convertImageCommand = `convert -density 300 "${pdfFilePath}" "${imageOutputPath}"`;
-
-            // exec(convertImageCommand, (error) => {
-            //     if (error) {
-            //         console.error(`转换为图片失败: ${error}`);
-            //         return;
-            //     }
-            //     console.log('转换成功！输出目录:', outputDir);
-            // });
-        });
-    });
+    execSync(pdfCmd);
 };
 
-//读取输入目录下所有文件
-fs.readdirSync(inputDir).forEach(async (file) => {
+// 使用 ImageMagick 将 PDF 转换为图片
+const convertPdfToImg = (inputDir, file) => {
+    const imgItemDir = path.join(imgDir, `${file.split('.')[0]}`);
+    if (!fs.existsSync(imgItemDir)) {
+        fs.mkdirSync(imgItemDir);
+    }
+
+    const imageOutputPath = path.join(imgItemDir, 'slide_%d.png');
+    const imgCmd = `magick -density 72 "${inputDir}" "${imageOutputPath}"`;
+    console.log(imgCmd);
+    execSync(imgCmd);
+};
+
+// 读取输入目录下所有ppt文件 => 转换为pdf
+fs.readdirSync(inputDir).forEach((file) => {
     const ext = file.split('.').pop().toLowerCase();
-    if (ppt.format.has(ext)) {
+    if (ppt.pptFormat.has(ext)) {
         const inputPath = path.join(inputDir, file);
-        const outputPath = path.join(pdfDir, file);
-        convertPptToImages(inputPath, outputPath)
-            .then(() => {
-                console.log(`${file}的图片已生成`);
-            })
-            .catch((err) => {
-                console.error(`${file}的图片生成失败`, err);
-            });
+        convertPptToPdf(inputPath);
+    }
+});
+
+// 读取输入目录下所有pdf文件下所有pdf文件 => 转换为image
+fs.readdirSync(pdfDir).forEach((file) => {
+    const ext = file.split('.').pop().toLowerCase();
+    if (ppt.pdfFormat.has(ext)) {
+        const inputPath = path.join(pdfDir, file);
+        convertPdfToImg(inputPath, file);
     }
 });

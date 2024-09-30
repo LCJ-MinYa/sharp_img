@@ -47,7 +47,7 @@ async function resizeImage(imageDir, outputDir, scale) {
 //读取输入目录下所有文件
 fs.readdirSync(inputDir).forEach(async (file) => {
     const ext = file.split('.').pop().toLowerCase();
-    if (cover.format.has(ext)) {
+    if (cover.imgFormat.has(ext)) {
         const inputPath = path.join(inputDir, file);
         cover.scaleArr.forEach((item) => {
             const outputPath = path.join(item.dir, file);

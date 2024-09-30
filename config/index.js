@@ -2,7 +2,7 @@ const config = {
     //基础公共配置
     base: {
         // 指定要查找的目录
-        directoryPath: '/Users/minya/Desktop/商品资料',
+        directoryPath: 'C:/Users/Administrator/Desktop/test',
         /**
          * 图片文件夹路径
          * 1. 配置文件中inputDir为空
@@ -16,7 +16,7 @@ const config = {
     // 裁剪商品封面图
     cover: {
         // 支持处理的常见图片格式
-        format: new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'tiff', 'svg']),
+        imgFormat: new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'tiff', 'svg']),
         // 封面图裁剪比例
         scaleArr: [
             {
@@ -32,8 +32,8 @@ const config = {
         ],
     },
     ppt: {
-        // 支持处理的常见图片格式
-        format: new Set(['ppt', 'pptx']),
+        pptFormat: new Set(['ppt', 'pptx']),
+        pdfFormat: new Set(['pdf']),
     },
 };
 
