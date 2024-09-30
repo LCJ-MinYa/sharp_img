@@ -4,11 +4,11 @@ const path = require('path');
 const { getInputDir } = require('../utils/index');
 const { cover } = require('../config/index');
 
-//图片文件夹路径
+//工作目录文件夹路径
 let inputDir = getInputDir();
 
 if (!inputDir) {
-    console.log('未执行裁剪主图，工作目录不存在');
+    console.log('未执行裁剪主图功能，工作目录不存在');
     return;
 }
 
@@ -47,7 +47,7 @@ async function resizeImage(imageDir, outputDir, scale) {
 //读取输入目录下所有文件
 fs.readdirSync(inputDir).forEach(async (file) => {
     const ext = file.split('.').pop().toLowerCase();
-    if (cover.imgFormat.has(ext)) {
+    if (cover.format.has(ext)) {
         const inputPath = path.join(inputDir, file);
         cover.scaleArr.forEach((item) => {
             const outputPath = path.join(item.dir, file);

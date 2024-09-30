@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "cover": "node ./src/product_cover_img.js"
+        "cover": "node ./src/product_cover_img.js",
+        "ppt": "node ./src/ppt_to_img.js"
     },
     "author": "",
     "license": "ISC",

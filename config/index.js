@@ -16,7 +16,7 @@ const config = {
     // 裁剪商品封面图
     cover: {
         // 支持处理的常见图片格式
-        imgFormat: new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'tiff', 'svg']),
+        format: new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'tiff', 'svg']),
         // 封面图裁剪比例
         scaleArr: [
             {
@@ -30,6 +30,10 @@ const config = {
                 dir: '',
             },
         ],
+    },
+    ppt: {
+        // 支持处理的常见图片格式
+        format: new Set(['ppt', 'pptx']),
     },
 };
 
