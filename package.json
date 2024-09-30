@@ -1,14 +1,15 @@
 {
-  "name": "sharp_img",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "sharp": "^0.33.5"
-  }
+    "name": "sharp_img",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "cover": "node ./src/product_cover_img.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "sharp": "^0.33.5"
+    }
 }
