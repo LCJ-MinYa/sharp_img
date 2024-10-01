@@ -45,19 +45,24 @@ const convertPdfToImg = (inputDir, file) => {
 };
 
 // 读取输入目录下所有ppt文件 => 转换为pdf
+let execNum = 0;
 fs.readdirSync(inputDir).forEach((file) => {
     const ext = file.split('.').pop().toLowerCase();
     if (ppt.pptFormat.has(ext)) {
+        execNum++;
+        if (base.rangeNum && execNum > base.rangeNum) {
+            console.log(base.rangeNum, execNum, '跳过');
+            return;
+        }
+        console.log(base.rangeNum, execNum, '执行');
+
         const inputPath = path.join(inputDir, file);
         convertPptToPdf(inputPath);
     }
 });
 
 // 读取输入目录下所有pdf文件下所有pdf文件 => 转换为image
-fs.readdirSync(pdfDir).forEach((file, index) => {
-    if (base.rangeNum && base.rangeNum > index + 1) {
-        return;
-    }
+fs.readdirSync(pdfDir).forEach((file) => {
     const ext = file.split('.').pop().toLowerCase();
     if (ppt.pdfFormat.has(ext)) {
         const inputPath = path.join(pdfDir, file);
