@@ -45,12 +45,14 @@ async function resizeImage(imageDir, outputDir, scale) {
 }
 
 //读取输入目录下所有文件
-fs.readdirSync(previewDir).forEach(async (file, index) => {
-    if (index > 4) {
-        return;
-    }
+let execNum = 0;
+fs.readdirSync(previewDir).forEach(async (file) => {
     const ext = file.split('.').pop().toLowerCase();
     if (cover.imgFormat.has(ext)) {
+        execNum++;
+        if (execNum > 5) {
+            return;
+        }
         const inputPath = path.join(previewDir, file);
         cover.scaleArr.forEach((item) => {
             const outputPath = path.join(item.dir, file);
