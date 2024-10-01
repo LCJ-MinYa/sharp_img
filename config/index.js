@@ -35,6 +35,18 @@ const config = {
         pptFormat: new Set(['ppt', 'pptx']),
         pdfFormat: new Set(['pdf']),
     },
+    merge: {
+        // 每行图片的个数
+        row: 3,
+        //画布背景颜色
+        bgColor: 'rgb(211, 211, 211)',
+        //画布宽度
+        width: 1000,
+        //画布外边距
+        margin: 3,
+        //图片间距
+        padding: 3,
+    },
 };
 
 module.exports = config;

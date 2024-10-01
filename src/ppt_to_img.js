@@ -14,7 +14,6 @@ if (!inputDir) {
 
 //创建pdf输出文件夹
 const pdfDir = `${inputDir}/pdf`;
-console.log(pdfDir);
 if (!fs.existsSync(pdfDir)) {
     fs.mkdirSync(pdfDir);
 }
