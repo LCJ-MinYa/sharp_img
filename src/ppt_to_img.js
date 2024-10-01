@@ -51,10 +51,8 @@ fs.readdirSync(inputDir).forEach((file) => {
     if (ppt.pptFormat.has(ext)) {
         execNum++;
         if (base.rangeNum && execNum > base.rangeNum) {
-            console.log(base.rangeNum, execNum, '跳过');
             return;
         }
-        console.log(base.rangeNum, execNum, '执行');
 
         const inputPath = path.join(inputDir, file);
         convertPptToPdf(inputPath);

@@ -13,7 +13,7 @@ const config = {
          */
         inputDir: '',
         // 要转换的文件个数, 0表示全部转换
-        rangeNum: 15,
+        rangeNum: 10,
     },
     // 裁剪商品封面图
     cover: {
