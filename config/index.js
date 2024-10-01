@@ -12,6 +12,8 @@ const config = {
          * 则直接使用inputDir作为工作目录
          */
         inputDir: '',
+        // 要转换的文件个数, 0表示全部转换
+        rangeNum: 15,
     },
     // 裁剪商品封面图
     cover: {

@@ -2,7 +2,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { getInputDir } = require('../utils/index');
-const { ppt } = require('../config/index');
+const { base, ppt } = require('../config/index');
 
 //工作目录文件夹路径
 const inputDir = getInputDir();
@@ -54,7 +54,10 @@ fs.readdirSync(inputDir).forEach((file) => {
 });
 
 // 读取输入目录下所有pdf文件下所有pdf文件 => 转换为image
-fs.readdirSync(pdfDir).forEach((file) => {
+fs.readdirSync(pdfDir).forEach((file, index) => {
+    if (base.rangeNum && base.rangeNum > index + 1) {
+        return;
+    }
     const ext = file.split('.').pop().toLowerCase();
     if (ppt.pdfFormat.has(ext)) {
         const inputPath = path.join(pdfDir, file);
