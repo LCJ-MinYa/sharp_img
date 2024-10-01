@@ -6,8 +6,8 @@ const { cover } = require('../config/index');
 
 //工作目录文件夹路径
 let inputDir = getInputDir();
-
-if (!inputDir) {
+const previewDir = `${inputDir}/预览图`;
+if (!inputDir || !previewDir) {
     console.log('未执行裁剪主图功能，工作目录不存在');
     return;
 }
@@ -45,10 +45,13 @@ async function resizeImage(imageDir, outputDir, scale) {
 }
 
 //读取输入目录下所有文件
-fs.readdirSync(inputDir).forEach(async (file) => {
+fs.readdirSync(previewDir).forEach(async (file, index) => {
+    if (index > 4) {
+        return;
+    }
     const ext = file.split('.').pop().toLowerCase();
     if (cover.imgFormat.has(ext)) {
-        const inputPath = path.join(inputDir, file);
+        const inputPath = path.join(previewDir, file);
         cover.scaleArr.forEach((item) => {
             const outputPath = path.join(item.dir, file);
             resizeImage(inputPath, outputPath, item.scale)

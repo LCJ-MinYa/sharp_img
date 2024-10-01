@@ -6,7 +6,6 @@ const { ppt } = require('../config/index');
 
 //工作目录文件夹路径
 const inputDir = getInputDir();
-
 if (!inputDir) {
     console.log('未执行ppt转图片功能，工作目录不存在');
     return;
