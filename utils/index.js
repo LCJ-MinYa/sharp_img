@@ -15,6 +15,7 @@ const getInputDir = () => {
 // 获取该文件夹下最新创建的文件夹作为工作目录
 const getLatestFolder = (directory) => {
     let currentInputDir = null;
+    let latestTime = 0;
 
     // 读取指定目录
     fs.readdirSync(directory, { withFileTypes: true }).forEach((file) => {
@@ -22,9 +23,7 @@ const getLatestFolder = (directory) => {
             const folderPath = path.join(directory, file.name);
             const stats = fs.statSync(folderPath);
             const creationTime = stats.birthtimeMs; // 获取创建时间
-
             // 找到最新创建的文件夹
-            let latestTime = 0;
             if (creationTime > latestTime) {
                 latestTime = creationTime;
                 currentInputDir = folderPath;

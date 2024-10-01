@@ -2,7 +2,7 @@ const config = {
     //基础公共配置
     base: {
         // 指定要查找的目录
-        directoryPath: 'C:/Users/Administrator/Desktop/test',
+        directoryPath: 'E:/商品资料汇总/商品资料(1051-1100)',
         /**
          * 图片文件夹路径
          * 1. 配置文件中inputDir为空
