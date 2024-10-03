@@ -2,7 +2,7 @@ const config = {
     //基础公共配置
     base: {
         // 指定要查找的目录
-        directoryPath: 'E:/商品资料汇总/商品资料(1051-1100)',
+        directoryPath: 'E:/商品资料汇总/商品资料(1101-1150)',
         /**
          * 图片文件夹路径
          * 1. 配置文件中inputDir为空
@@ -13,7 +13,7 @@ const config = {
          */
         inputDir: '',
         // 要转换的文件个数, 0表示全部转换
-        rangeNum: 10,
+        rangeNum: 15,
     },
     // 裁剪商品封面图
     cover: {

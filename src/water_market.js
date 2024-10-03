@@ -27,7 +27,7 @@ async function nodeGenWatermark({ img, text, filepath }) {
      * @param {string} color 字体颜色
      * @return {Buffer}
      */
-    function text2SVG({ text, fontSize = 24, color = 'rgba(204, 204, 204, 0.3)' }) {
+    function text2SVG({ text, fontSize = 24, color = 'rgba(204, 204, 204, 0.2)' }) {
         const fontPath = path.join(__dirname, '../assets/STHUPO.TTF');
         // 加载字体文件
         const text2SVG = Text2SVG.loadSync(fontPath);
@@ -47,7 +47,7 @@ async function nodeGenWatermark({ img, text, filepath }) {
      */
     async function rotateWatermarkBuffer(text) {
         // `  ${text}  ` 增加下文字间距
-        const textBuffer = text2SVG({ text: `         ${text}         ` });
+        const textBuffer = text2SVG({ text: `             ${text}             ` });
         return sharp(textBuffer)
             .rotate(330, { background: { r: 255, g: 255, b: 255, alpha: 0 } }) // 旋转330度，并且透明色
             .toBuffer();
