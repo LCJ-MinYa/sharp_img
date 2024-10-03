@@ -31,14 +31,20 @@ def ppt2png(pptFileName, downLoad_path, powerpoint):
 # 批量转换PPT文件
 def batch_convert_ppt_to_png(directory, output_directory):
     powerpoint = init_powerpoint()
+    conversion_count = 0  # 初始化转换计数器
 
     # 遍历指定目录中的所有PPT和PPTX文件
     for filename in os.listdir(directory):
         if filename.endswith(".ppt") or filename.endswith(".pptx"):
+            if conversion_count >= Config.RANGE_NUM:
+                print("已达到最大转换限制。")
+                break  # 如果达到最大转换次数，则停止
+
             pptFileName = os.path.join(directory, filename)
             downLoad_path = os.path.join(
                 output_directory, os.path.splitext(filename)[0]
             )  # 不带扩展名的文件名
+            conversion_count += 1  # 转换计数器加1
             ppt2png(pptFileName, downLoad_path, powerpoint)
 
     powerpoint.Quit()  # 退出PowerPoint
