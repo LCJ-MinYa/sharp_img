@@ -91,8 +91,8 @@ fs.readdirSync(merageImgDir, { withFileTypes: true }).forEach((imgDir) => {
         });
         const sortImagePaths = imagePaths.sort((a, b) => {
             // 提取数字部分
-            const numA = parseInt(a.match(/slide_(\d+)\.png/)[1], 10);
-            const numB = parseInt(b.match(/slide_(\d+)\.png/)[1], 10);
+            const numA = parseInt(a.match(/幻灯片(\d+)\.png/)[1], 10);
+            const numB = parseInt(b.match(/幻灯片(\d+)\.png/)[1], 10);
 
             return numA - numB; // 按数字排序
         });

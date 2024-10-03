@@ -1,11 +1,9 @@
 import os
-import shutil
 from pptx import Presentation
-from pptx.util import Inches
-from PIL import Image
+from config import Config
 
 # 指定包含PPT文件的文件夹
-folder_path = 'C:/Users/Administrator/Desktop/测试'
+folder_path = "C:/Users/Administrator/Desktop/测试/ppt1010"
 
 
 def del_slide(presentation, slide_index):
@@ -15,11 +13,11 @@ def del_slide(presentation, slide_index):
     :param slide_index: 索引
     :return: 被删除的幻灯片对象
     """
-
     slides = list(presentation.slides._sldIdLst)
     slide_to_delete = slides[slide_index]
     presentation.slides._sldIdLst.remove(slide_to_delete)
     return slide_to_delete  # 返回被删除的幻灯片对象
+
 
 def delete_last_slide_from_ppt(ppt_path):
     """
@@ -35,15 +33,17 @@ def delete_last_slide_from_ppt(ppt_path):
     else:
         print(f"pptx文件中没有幻灯片： {ppt_path}")
 
+
 def batch_delete_last_slides(directory):
     """
     批量删除每个PPT的最后一张幻灯片
     :param directory: 文件夹路径
     """
     for filename in os.listdir(directory):
-        if filename.endswith('.pptx') or filename.endswith('.ppt'):
+        if filename.endswith(".pptx") or filename.endswith(".ppt"):
             ppt_path = os.path.join(directory, filename)
             delete_last_slide_from_ppt(ppt_path)
 
+
 # 调用批量删除函数
-batch_delete_last_slides(folder_path)
+batch_delete_last_slides(Config.get_latest_folder(Config.WORK_PATH))

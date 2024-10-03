@@ -38,7 +38,7 @@ const convertPdfToImg = (inputDir, file) => {
         fs.mkdirSync(imgItemDir);
     }
 
-    const imageOutputPath = path.join(imgItemDir, 'slide_%d.png');
+    const imageOutputPath = path.join(imgItemDir, '幻灯片%d.png');
     const imgCmd = `magick -density 72 "${inputDir}" "${imageOutputPath}"`;
     console.log(imgCmd);
     execSync(imgCmd);

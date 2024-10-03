@@ -9,7 +9,8 @@
         "ppt": "node ./src/ppt_to_img.js",
         "merge": "node ./src/img_merge.js",
         "water": "node ./src/water_market.js",
-        "pptToImg": "npm run ppt && npm run merge && npm run water && npm run cover"
+        "pptToImg": "npm run ppt && npm run merge && npm run water && npm run cover",
+        "pyToImg": "npm run merge && npm run water && npm run cover"
     },
     "author": "",
     "license": "ISC",

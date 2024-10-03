@@ -1,8 +1,6 @@
 const config = {
     //基础公共配置
     base: {
-        // 指定要查找的目录
-        directoryPath: 'E:/商品资料汇总/商品资料(1101-1150)',
         /**
          * 图片文件夹路径
          * 1. 配置文件中inputDir为空
@@ -12,8 +10,12 @@ const config = {
          * 则直接使用inputDir作为工作目录
          */
         inputDir: '',
+        // 指定要查找的目录
+        directoryPath: 'E:/商品资料汇总/商品资料(1101-1150)',
         // 要转换的文件个数, 0表示全部转换
-        rangeNum: 15,
+        rangeNum: 20,
+        // directoryPath: 'C:/Users/Administrator/Desktop/测试',
+        // rangeNum: 3,
     },
     // 裁剪商品封面图
     cover: {
